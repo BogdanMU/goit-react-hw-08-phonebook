@@ -6,7 +6,6 @@ export const ContactsFilter = () => {
 
   const onFilterInput = event => {
     const { value } = event.target;
-    console.log(value);
     dispatch(createFilter(value));
   };
 

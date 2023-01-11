@@ -14,7 +14,7 @@ export const App = () => {
       <ContactForm />
       <h2>Contacts</h2>
       <ContactsFilter />
-      {contacts !== null ? <ContactsList /> : <p>Add some friends!</p>}
+      {contacts !== [] ? <ContactsList /> : <p>Add some friends!</p>}
     </Wrap>
   );
 };

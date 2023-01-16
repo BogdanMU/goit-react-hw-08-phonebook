@@ -1,6 +1,6 @@
 import { DeleteBtn, List } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContact } from 'redux/contactsSlice';
+import { removeContact } from 'redux/slices/contactsSlice';
 import { getContacts, getFilter } from 'redux/selectors';
 
 export const ContactsList = () => {

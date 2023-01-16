@@ -1,7 +1,7 @@
 import { DeleteBtn, List } from './ContactsList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContact } from 'redux/slices/contactsSlice';
 import { getContacts, getFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
 
 export const ContactsList = () => {
   const contacts = useSelector(getContacts);
@@ -21,7 +21,7 @@ export const ContactsList = () => {
               <DeleteBtn
                 type="button"
                 onClick={() => {
-                  dispatch(removeContact(contact.id));
+                  dispatch(deleteContact(contact.id));
                 }}
               >
                 Delete

@@ -1,15 +1,19 @@
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { AppBar } from 'components/AppBar/AppBar';
-import { Wrap } from './SharedLayout.styled';
+import { Wrap, ContentContainer } from './SharedLayout.styled';
+import { Footer } from 'components/Footer/Footer';
 
 export const SharedLayout = () => {
   return (
     <Wrap>
-      <AppBar />
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
+      <ContentContainer>
+        <AppBar />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+        <Footer />
+      </ContentContainer>
     </Wrap>
   );
 };

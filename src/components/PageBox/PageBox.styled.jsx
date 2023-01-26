@@ -8,13 +8,6 @@ export const PageContainer = styled.div`
   align-items: center;
   text-align: center;
   color: wheat;
-  background: rgb(11, 49, 62);
-  background: linear-gradient(
-    90deg,
-    rgba(11, 49, 62, 1) 20%,
-    rgba(231, 99, 16, 1) 50%,
-    rgba(11, 49, 62, 1) 80%
-  );
   & input {
     background-color: wheat;
     transition: all 200ms;

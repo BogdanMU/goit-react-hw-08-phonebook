@@ -8,13 +8,6 @@ export const Header = styled.header`
   padding-right: 15px;
   padding-left: 15px;
   height: 50px;
-  background: rgb(11, 49, 62);
-  background: linear-gradient(
-    90deg,
-    rgba(11, 49, 62, 1) 20%,
-    rgba(231, 99, 16, 1) 50%,
-    rgba(11, 49, 62, 1) 80%
-  );
 `;
 
 export const PagesNav = styled.nav`

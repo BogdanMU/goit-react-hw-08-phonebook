@@ -1,27 +1,50 @@
-import { ContactsList } from './ContactsList/ContactsList';
-import { ContactsFilter } from './ContactsFilter/ContactsFilter';
-import { ContactForm } from './ContactsForm/ContactForm';
-import { Wrap } from './App.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+
+import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { selectIsRefreshing } from 'redux/auth/selectors';
+import { refreshUser } from 'redux/auth/operations';
+
+import Home from 'pages/Home';
+import Register from 'pages/Register';
+import Login from 'pages/Login';
+import Contacts from 'pages/Contacts';
 
 export const App = () => {
   const dispatch = useDispatch();
 
+  const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  const contacts = useSelector(getContacts);
-  return (
-    <Wrap>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <ContactsFilter />
-      {contacts.length !== 0 ? <ContactsList /> : <div>Add some friends!</div>}
-    </Wrap>
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute redirectTo="/contacts" component={<Register />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={<PublicRoute redirectTo="/contacts" component={<Login />} />}
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
